@@ -1,5 +1,5 @@
 library(httr)
-
+library(XML)
 raw <- POST(url="http://dallaspolice.net/MediaAccess/Default.aspx", 
           body="httprequest=true")
 html <- content(raw, useInternalNodes=TRUE)
@@ -13,3 +13,7 @@ data <- as.data.frame(t(sapply(vals, rbind)))
 colnames(data) <- c("Map", "IncidentNum", "Division", "Nature", "Priority", 
                     "DateTime", "UnitNum", "Block", "Location", "Beat", 
                     "ReportingArea", "Status")
+str(data)
+class(data)
+typeof(data)
+save(data,file="dallasPoliceData.Rdata")
